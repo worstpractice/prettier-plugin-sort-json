@@ -14,7 +14,7 @@ function sortObject(object: any, recursive: boolean): any {
     !Array.isArray(object)
   ) {
     const sortedJson: Record<string, any> = {};
-    for (const key of Object.keys(object).sort()) {
+    for (const key of Object.keys(object).sort((a, b) => a > b ? 1 : b > a ? -1 : 0)) {
       if (recursive && isObject(object[key])) {
         sortedJson[key] = sortObject(object[key], recursive);
       } else {
